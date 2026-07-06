@@ -1,0 +1,28 @@
+# .NET
+# ==============
+bin/
+obj/
+
+# Banco local
+# ==============
+*.db
+*.sqlite
+
+# Node / React
+# ==============
+node_modules/
+build/
+dist/
+
+# Environment variables
+# ==============
+.env
+
+# Logs
+# ==============
+*.log
+
+
+.vscode/
+Thumbs.db
+Desktop.ini
