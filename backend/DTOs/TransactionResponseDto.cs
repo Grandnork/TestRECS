@@ -4,13 +4,15 @@ namespace Backend.DTOs;
 
 public class TransactionResponseDto
 {
-    public Guid Id { get; set; }
+    public Guid Id { get; init; }
 
-    public string Description { get; set; } = string.Empty;
+    public string Description { get; init; } = string.Empty;
 
-    public decimal Amount { get; set; }
+    public decimal Amount { get; init; }
 
-    public TransactionType Type { get; set; }
+    public TransactionType Type { get; init; }
 
-    public Guid PersonId { get; set; }
+    public Guid PersonId { get; init; }
+
+     public string PersonName { get; init; } = string.Empty;
 }
