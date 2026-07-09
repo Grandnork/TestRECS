@@ -90,7 +90,15 @@ public class TransactionsController : ControllerBase
         return CreatedAtAction(
             nameof(GetTransactions),
             new { id = transaction.Id },
-            transaction
+            new TransactionResponseDto
+            {
+                Id = transaction.Id,
+                Description = transaction.Description,
+                Amount = transaction.Amount,
+                Type = transaction.Type,
+                PersonId = transaction.PersonId,
+                PersonName = person.Name
+            }
         );
     }
 }

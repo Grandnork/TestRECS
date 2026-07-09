@@ -14,5 +14,5 @@ public class TransactionResponseDto
 
     public Guid PersonId { get; init; }
 
-     public string PersonName { get; init; } = string.Empty;
+    public string PersonName { get; init; } = string.Empty;
 }
