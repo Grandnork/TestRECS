@@ -19,6 +19,8 @@ export default function ReportsPage() {
             try{
                 const generalData = await getGeneralReport();
                 const householdData = await getHouseholdTotal();
+                console.log(generalData);
+                console.log(householdData);
                 setGeneral(generalData);
                 setHousehold(householdData);
             } catch (err) {
@@ -37,29 +39,57 @@ export default function ReportsPage() {
     if (error) {
         return <p>{error}</p>
     }
-
+    /*
+        Teste de CSS para melhoria de interface final.
+        TODO: aplicar as informações em cards como componentes para facilitar 
+        modicações de CSS e utilização.
+    */
     return (
         <div>
 
             <h1>General Reports</h1>
 
-            {general &&
-                <div key={general.personId}>
-                    <p>{general.personName}</p>
-                    <p>{general.totalIncome}</p>
-                    <p>{general.totalExpenses}</p>
-                    <p>{general.balance}</p>
+            <p>Total Income(R$): {general?.totalIncome}</p>
+            <p>Total Expenses(R$): {general?.totalExpenses}</p>
+            <p>Balance(R$): {general?.balance}</p>
+
+            <h3>Residents</h3>
+            <div style={{
+                    display: "flex",
+                    gap: "20px",
+                    flexWrap: "wrap",
+                    justifyContent: "center",
+                    padding: "1rem"
+                }}>
+            {general?.people.map(person => (
+                <div key={person.personId}>
+                    <p>{person.personName}</p>
+                    <p>Income(R$): {person.totalIncome}</p>
+                    <p>Expenses(R$): {person.totalExpenses}</p>
+                    <p>Balance(R$): {person.balance}</p>
+                    
                 </div>
-            }
+            ))}
+            </div>
+            
+            {/*
+                A ideia de dois controladores diferentes para um "relatório" parte da simplificação 
+                necessária quando são trabalhados períodos grandes, enquanto são necessários detalhes em períodos curtos.
+
+                O controlador geral, por exemplo, seria responsável por medir gastos semanais e mensais de forma detalhada. 
+                Enquanto o controlador da residência mediria informações simplificadas 
+                entre períodos trimestrais, semestrais ou anuais.
+
+                TODO: Adicionar uma chave de tempo durante o cadastro de despesas para implementação.
+            */}
 
             <h1>Household Reports</h1>
 
             {household && 
-                <div key={household.personId}>
-                    <p>{household.personName}</p>
-                    <p>{household.totalIncome}</p>
-                    <p>{household.totalExpenses}</p>
-                    <p>{household.balance}</p>
+                <div>
+                    <p>Total Income(R$): {household.totalIncome}</p>
+                    <p>Total Expenses(R$): {household.totalExpenses}</p>
+                    <p>Total Household Balance(R$): {household.balance}</p>
                 </div>
             }
 

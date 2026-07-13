@@ -25,7 +25,7 @@ export default function TransactionPage() {
             {transaction.map(transaction => (
                 <div key={transaction.id}>
                     <p key={transaction.personName}>Person: {transaction.personName}</p>
-                    <p>Amount: {transaction.type === 0 ? "-" : ""}${transaction.amount}</p>
+                    <p>Amount: {transaction.type === 0 ? "-" : ""}R${transaction.amount}</p>
                     <p>Description: {transaction.description}</p>
                 </div>
             ))}

@@ -31,18 +31,34 @@ export default function PeoplePage() {
     if (error) {
         return <p>{error}</p>
     }
-
+    /*
+        In-line css para ajudar a decidir a aparência final e iniciar a inclusão de botões.
+    */
     return (
-        <div>
+        <div style={{ padding: "2rem", margin: "0 auto" }}>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Age</th>
+                        <th>Type</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
 
-            <h1>Pessoas</h1>
-
-            {people.map(person => (
-                <div key={person.id}>
-                    <p>{person.name} - {person.age} </p>
-                </div>
-            ))}
-
+                <tbody>
+                    {people.map(person => (
+                        <tr key={person.id}>
+                            <td>{person.name}</td>
+                            <td>{person.age}</td>
+                            <td>{person.age < 18 ? "Minor" : "Adult"}</td>
+                            <td>
+                                <button>View Report</button>
+                            </td>
+                        </tr>
+                    ))}
+                </tbody>
+            </table>
         </div>
     );
 }
